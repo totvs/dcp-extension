@@ -12,7 +12,7 @@
         "Other"
     ],
     "repository": {
-        "url": "https://totvstfs.visualstudio.com/DevCenterProtheus/_git/extension"
+        "url": "https://github.com/totvs/dcp-extension"
       },
     "activationEvents": [
         "onCommand:thf.checkWorkspace",
