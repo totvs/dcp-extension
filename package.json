@@ -1,0 +1,78 @@
+{
+    "name": "protheus-dev-sandbox",
+    "displayName": "Protheus Dev SandBox",
+    "description": "Dev Enviorment for TOTVS Protheus",
+    "icon": "images/logo_totvs.png",
+    "version": "0.0.1",
+    "publisher": "TOTVS",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "repository": {
+        "url": "https://totvstfs.visualstudio.com/DevCenterProtheus/_git/extension"
+      },
+    "activationEvents": [
+        "onCommand:thf.checkWorkspace",
+        "onCommand:thf.createSettings"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "thf.checkWorkspace",
+                "title": "TOTVS: Protheus Dev SandBox - Create Docker Compose"
+            },
+            {
+                "command": "thf.createSettings",
+                "title": "TOTVS: Protheus Dev SandBox - Create VSCode Settings"
+            }
+        ],
+        "configuration": [
+            {
+                "title": "totvs",
+                "properties": {
+                    "advpl.pathPatchBuild": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Run arguments to be passed to 'cordova run/build <platform>' or 'ionic serve' command",
+                        "scope": "resource"
+                    },
+                    "advpl.environments": {
+                        "type": "array",
+                        "default": [],
+                        "description": "Run arguments to be passed to 'cordova run/build <platform>' or 'ionic serve' command",
+                        "scope": "resource"
+                    }
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "tslint -p .",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@totvs/thf-tslint": "^1.9.1",
+        "@types/fs-extra": "5.0.1",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^9.6.2",
+        "typescript": "^2.8.1",
+        "vscode": "^1.1.21"
+    },
+    "dependencies": {
+        "fs-extra": "^5.0.0",
+        "@types/debug": "^0.0.29",
+        "@types/mkdirp": "^0.3.29",
+        "braces": "^2.2.2",
+        "tslint": "^5.8.0",
+        "debug": "^2.6.7",
+        "mkdirp": "^0.5.1"
+    }
+}

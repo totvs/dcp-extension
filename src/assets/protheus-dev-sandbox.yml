@@ -1,0 +1,33 @@
+version: '3.2'
+
+services:
+    license:
+      image: docker.totvs.io/dcp/license
+
+    appserver:
+      image: docker.totvs.io/dcp/appserver
+      depends_on:
+        - dbaccess
+      ports:
+        - 8080:80   # WebAPP
+        - 8081:8081 # Porta para acesso TCP
+        - 8084:8084 # Porta para o REST
+      environment:
+        - REST=true
+      volumes:
+        - rpo_data:/apo
+
+    dbaccess:
+      image: docker.totvs.io/dcp/dbaccess
+      depends_on:
+        - database
+        - license
+
+    database:
+      image: docker.totvs.io/dcp/database
+      volumes:
+        - db_data:/var/lib/postgresql/data
+
+volumes:
+  rpo_data:
+  db_data:
