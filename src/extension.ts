@@ -28,7 +28,7 @@ function checkWorkspace(context) {
                 } else {
 
                     vscode.window.showWorkspaceFolderPick( { placeHolder: 'Select your workspace:'} ).then( result => {
-                        createCompose( result.uri.path, context );
+                        createCompose( result.uri.fsPath, context );
                     });
 
                 }
@@ -52,7 +52,7 @@ function newDirectory(resultInput, context) {
 
     if ( vscode.workspace.updateWorkspaceFolders (
         vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders.length : 0, null, workspace )) {
-        createCompose(resultInput['0'].path, context);
+        createCompose(resultInput['0'].fsPath, context);
     }
 
 }
