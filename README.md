@@ -90,5 +90,8 @@ Wait for all services load...
 
 Now, go to `http://localhost:8080` on your favorite browser.
 
+First login:
+Username: ADMIN
+Password: admin
 
 Enjoy!
