@@ -62,9 +62,10 @@ function createIncludes(folderPath, context?: vscode.ExtensionContext) {
 }
 
 function createSettings(folderPath, context?: vscode.ExtensionContext) {
-
-    const settings = context.extensionPath + '/src/assets/vscode';
-    copy('folder', settings, folderPath + '/.vscode');
+    const path = require('path');
+	
+    const settings = path.join(context.extensionPath, 'src', 'assets', 'vscode');
+    copy('folder', settings, path.join(folderPath, '.vscode'));
 
 }
 

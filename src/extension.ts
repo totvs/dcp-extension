@@ -92,13 +92,13 @@ function createSettings(context?: vscode.ExtensionContext) {
         if (advplExt) {
             vscode.window.showWorkspaceFolderPick({ placeHolder: 'Select your workspace:'}).then(result => {
 
-                configure(result.uri.path, false, true, false, context);
+                configure(result.uri.fsPath, false, true, false, context);
 
                 setTimeout(() => {
 
                 if (result) {
 
-                    const uri = vscode.Uri.file(result.uri.path );
+                    const uri = vscode.Uri.file(result.uri.fsPath );
                     const folderConf = vscode.workspace.getConfiguration('advpl', uri );
                     const env = folderConf.get('environments');
 
