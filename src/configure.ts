@@ -68,7 +68,16 @@ function createSettings(folderPath, context?: vscode.ExtensionContext) {
     copy('folder', settings, path.join(folderPath, '.vscode'));
 
 }
+						
+function createSmartClient(folderPath, context?: vscode.ExtensionContext) {
+    const path = require('path');
+	
+    const settings = path.join(context.extensionPath, 'src', 'assets', 'smartclient');
+    copy('folder', settings, path.join(folderPath, 'SmartClient'));
 
+}
+						
+						
 function copy(type, src, dest ) {
     if (type === 'folder') {
         fs.copy(src, dest);
