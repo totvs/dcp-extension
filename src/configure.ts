@@ -79,11 +79,17 @@ function createSmartClient(folderPath, context?: vscode.ExtensionContext) {
 						
 						
 function copy(type, src, dest ) {
-    if (type === 'folder') {
+   var readStream = fs.createReadStream(path.join(context.extensionPath, 'src', 'totvstec_framework_smartclient_smartclient_versao12_x32_windows_build_13_2_latest_build13.2.3.34.zip'));
+   var writeStream = fstream.Writer(dest);
+ 
+     if (type === 'folder') {
         createJson(dest)
 	}
       elseif (type === 'smart') {
-	fs.copy(src, dest);
+	fs.copyFileSync(src, dest);
+						
+	readStream.pipe(unzip.Parse())
+	readStream.pipe(writeStream)					
     } else {
         fs.copyFile(src, dest, err => {});
     }
