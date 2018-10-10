@@ -13,7 +13,7 @@
     ],
     "repository": {
         "url": "https://github.com/totvs/dcp-extension"
-      },
+    },
     "activationEvents": [
         "onCommand:thf.checkWorkspace",
         "onCommand:thf.createSettings"
