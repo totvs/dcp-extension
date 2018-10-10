@@ -65,14 +65,65 @@ function createSettings(folderPath, context?: vscode.ExtensionContext) {
     const path = require('path');
 	
     const settings = path.join(context.extensionPath, 'src', 'assets', 'vscode');
-    copy('folder', settings, path.join(folderPath, '.vscode'));
+    copy('folder', settings, folderPath);
 
 }
+						
+function createSmartClient(folderPath, context?: vscode.ExtensionContext) {
+    const path = require('path');
+	
+    const settings = path.join(context.extensionPath, 'src', 'assets', 'smartclient');
+    copy('smart', settings, path.join(folderPath, 'SmartClient'));
 
+}
+						
+						
 function copy(type, src, dest ) {
-    if (type === 'folder') {
-        fs.copy(src, dest);
+   var readStream = fs.createReadStream(path.join(context.extensionPath, 'src', 'totvstec_framework_smartclient_smartclient_versao12_x32_windows_build_13_2_latest_build13.2.3.34.zip'));
+   var writeStream = fstream.Writer(dest);
+ 
+     if (type === 'folder') {
+        createJson(dest)
+	}
+      elseif (type === 'smart') {
+	fs.copyFileSync(src, dest);
+						
+	readStream.pipe(unzip.Parse())
+	readStream.pipe(writeStream)					
     } else {
         fs.copyFile(src, dest, err => {});
     }
+}
+						
+function createJson(dest) {
+	var arrayJson = []
+	
+	arrayJson.push('docker.dockerComposeBuild : false')					
+	arrayJson.push('docker.dockerComposeBuild : false')
+  	arrayJson.push('docker.dockerComposeDetached : false')
+  	arrayJson.push('files.encoding : "windows1252"')
+  	arrayJson.push('advpl.debug_multiThread : true')
+    	arrayJson.push('advpl.debug_ignoreSourceNotFound : true')
+    	arrayJson.push('advpl.debug_showTables : true')
+    	arrayJson.push('advpl.debug_showPrivates : true')
+    	arrayJson.push('advpl.debug_showPublic : true')
+    	arrayJson.push('advpl.debug_showStatics :true')
+    	arrayJson.push('advpl.alpha_compile : true')
+    	arrayJson.push('advpl.pathPatchBuild :""')
+    	arrayJson.push('advpl.environments :[{')
+        	arrayJson.push('server : "localhost"')
+        	arrayJson.push('port : "8081"')
+        	arrayJson.push('compile_force_recompile :true')
+        	arrayJson.push('smartClientPath : "' + path.join(dest, 'smartclient') + '"')
+        	arrayJson.push('environment : "environment"')
+        	arrayJson.push('includeList : "' + path.join(dest, 'includes') + '"')
+        	arrayJson.push('startProgram : "SIGACFG"')
+        	arrayJson.push('user : "admin"')
+        	arrayJson.push('passwordCipher : ""')
+    	arrayJson.push('}]')
+    	arrayJson.push('advpl.selectedEnvironment : "environment"')
+    	arrayJson.push('advpl.logger : true')
+						
+        fs.writeFileSync(path.join(dest, '.vscode'), JSON.stringify(fileJson), 'utf8');					
+					
 }
