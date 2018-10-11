@@ -3,7 +3,7 @@
     "displayName": "Protheus Dev SandBox",
     "description": "Dev Enviorment for TOTVS Protheus",
     "icon": "images/logo_totvs.png",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "publisher": "TOTVS",
     "engines": {
         "vscode": "^1.25.0"
