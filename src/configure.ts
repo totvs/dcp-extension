@@ -61,19 +61,55 @@ function createIncludes(folderPath, context?: vscode.ExtensionContext) {
 
 }
 
-function createSettings(folderPath, context?: vscode.ExtensionContext) {
+function createSettings(folderPath, context) {
     const path = require('path');
-
     const settings = path.join(context.extensionPath, 'src', 'assets', 'vscode');
-    copy('folder', settings, path.join(folderPath, '.vscode'));
 
+    copy('settings', settings, path.join(folderPath, '.vscode'));
 }
 
-function copy(type, src, dest ) {
+function copy(type, src, dest) {
+    if (type === 'settings') {
+        createJson(src);
+        fs.copy(src, dest);
+    }
+
     if (type === 'folder') {
         fs.copy(src, dest);
     }
+
     if (type === 'file') {
-        fs.copyFile(src, dest, err => {});
+        fs.copyFile(src, dest, err => { });
     }
+}
+
+function createJson(src) {
+    const path = require('path');
+    const arrayJson = [];
+
+    arrayJson.push({'docker.dockerComposeBuild': false,
+                    'docker.dockerComposeDetached' : false,
+                    'files.encoding' : 'windows1252',
+                    'advpl.debug_multiThread' : true,
+                    'advpl.debug_ignoreSourceNotFound' : true,
+                    'advpl.debug_showTables' : true,
+                    'advpl.debug_showPrivates' : true,
+                    'advpl.debug_showPublic' : true,
+                    'advpl.debug_showStatics' : true,
+                    'advpl.alpha_compile' : true,
+                    'advpl.pathPatchBuild' : '',
+                    'advpl.environments': [{ 'server' : 'localhost',
+                    'port' : '8081',
+                    'compile_force_recompile' : true,
+                    'smartClientPath' :  path.join(src, 'smartclient'),
+                    'environment' : 'environment',
+                    'includeList' : path.join(src, 'includes'),
+                    'startProgram' : 'SIGACFG',
+                    'user' : 'admin',
+                    'passwordCipher' : '',
+                    }],
+                    'advpl.selectedEnvironment' : 'environment',
+                    'advpl.logger' : true});
+
+    fs.writeFileSync(path.join(src, 'settings.json'), JSON.stringify(arrayJson, null, '\t'), 'utf8');
 }
