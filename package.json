@@ -9,8 +9,7 @@
         "vscode": "^1.25.0"
     },
     "categories": [
-        "protheus",
-        "totvs"
+        "Other"
     ],
     "repository": {
         "url": "https://github.com/totvs/dcp-extension"
