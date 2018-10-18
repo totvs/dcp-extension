@@ -3,7 +3,7 @@
     "displayName": "Protheus Dev SandBox",
     "description": "Dev Enviorment for TOTVS Protheus",
     "icon": "images/logo_totvs.png",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "publisher": "totvs",
     "engines": {
         "vscode": "^1.25.0"
@@ -12,7 +12,6 @@
         "advpl",
         "protheus",
         "totvs"
-
     ],
     "repository": {
         "url": "https://github.com/totvs/dcp-extension"
