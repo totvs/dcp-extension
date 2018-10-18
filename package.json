@@ -1,7 +1,7 @@
 {
     "name": "protheus-dev-sandbox",
     "displayName": "Protheus Dev SandBox",
-    "description": "Dev Enviorment for TOTVS Protheus",
+    "description": "Dev Enviorment for TOTVS Protheus using advpl language",
     "icon": "images/logo_totvs.png",
     "version": "0.4.0",
     "publisher": "totvs",
@@ -9,7 +9,6 @@
         "vscode": "^1.25.0"
     },
     "categories": [
-        "advpl",
         "protheus",
         "totvs"
     ],
